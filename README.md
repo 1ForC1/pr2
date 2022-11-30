@@ -1,16 +1,13 @@
-# pr2
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Практическая работа №2
+## Тема работы
+Реализация таблиц для предметной области "Магазин велосипедов"
+### Цель работы:
+Реализовать класс, который отвечает за базу данных и выполнить её инициализацию для всех платформ, а также написать методы создания, обновления, заполнения и удаления таблиц.
+### Ход работы:
+1.	Инициализация базы данных для всех платформ.
+2.	Создание таблиц.
+3.	Написание метода обновления.
+4.	Использование функции Insert.
+5.	Удаление базы данных.
+### Вывод:
+В ходе данной практической работы был реализован класс, который отвечает за базу данных. Выполнена инициализация базы для всех платформ, а также написаны методы создания, обновления, заполнения и удаления таблиц.
