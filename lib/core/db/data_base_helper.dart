@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:pr2/common/data_base_request.dart';
-import 'package:pr2/data/model/bike.dart';
 import 'package:pr2/data/model/bike_type.dart';
 import 'package:pr2/data/model/brakes_type.dart';
 import 'package:pr2/data/model/brand.dart';
 import 'package:pr2/data/model/client.dart';
 import 'package:pr2/data/model/supplier.dart';
 import 'package:pr2/data/model/user.dart';
+import 'package:pr2/data/model/bike.dart';
 import 'package:pr2/data/model/warehouse.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -38,15 +38,16 @@ class DataBaseHelper {
       database = await databaseFactoryFfi.openDatabase(_pathDB,
           options: OpenDatabaseOptions(
             version: _version,
-            onUpgrade: (db, oldVersion, newVersion) => onUpdateTable(db),
-            onCreate: (db, version) => onCreateTable(db),
+            onUpgrade: (db, oldVersion, newVersion) async =>
+                await onUpdateTable(db),
+            onCreate: (db, version) async => await onCreateTable(db),
           ));
     } else {
       database = await openDatabase(
         _pathDB,
         version: _version,
         onUpgrade: (db, oldVersion, newVersion) => onUpdateTable(db),
-        onCreate: (db, version) => onCreateTable(db),
+        onCreate: (db, version) async => await onCreateTable(db),
       );
     }
   }
@@ -126,29 +127,29 @@ class DataBaseHelper {
                   Telephone: '891919191919')
               .toMap());
 
-      // db.insert(
-      //     DataBaseRequest.tableBike,
-      //     Bike(
-      //             idBrand: Brand(
-      //               title: 'Stinger',
-      //             ),
-      //             idBikeType: BikeType(
-      //               title: 'Горный',
-      //             ),
-      //             idWarehouse: Warehouse(
-      //                 warehouseNumber: 'warehouse_number',
-      //                 address: 'address',
-      //                 cellQuantity: 'cell_quantity',
-      //                 idSupplier: Supplier(
-      //                     title: 'Stels Corp',
-      //                     address: 'Россия, Москва, ул. Автобусов, 3')),
-      //             idBrakesType: BrakesType(
-      //               title: 'Дисковые тормоза',
-      //             ),
-      //             cost: 12000,
-      //             diameter: 16,
-      //             year: 2021)
-      //         .toMap());
+      db.insert(
+          DataBaseRequest.tableBike,
+          Bike(
+                  idBrand: Brand(
+                    title: 'Stinger',
+                  ),
+                  idBikeType: BikeType(
+                    title: 'Горный',
+                  ),
+                  idWarehouse: Warehouse(
+                      warehouseNumber: 'warehouse_number',
+                      address: 'address',
+                      cellQuantity: 'cell_quantity',
+                      idSupplier: Supplier(
+                          title: 'Stels Corp',
+                          address: 'Россия, Москва, ул. Автобусов, 3')),
+                  idBrakesType: BrakesType(
+                    title: 'Дисковые тормоза',
+                  ),
+                  cost: 12000,
+                  diameter: 16,
+                  year: 2021)
+              .toMap());
     } on DatabaseException catch (error) {
       print(error.result);
     }

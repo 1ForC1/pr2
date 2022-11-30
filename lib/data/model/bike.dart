@@ -1,3 +1,8 @@
+import 'package:pr2/data/model/bike_type.dart';
+import 'package:pr2/data/model/brakes_type.dart';
+import 'package:pr2/data/model/brand.dart';
+import 'package:pr2/data/model/warehouse.dart';
+
 import '../../domain/entity/bike_entity.dart';
 
 class Bike extends BikeEntity {
@@ -26,10 +31,10 @@ class Bike extends BikeEntity {
   factory Bike.toFromMap(Map<String, dynamic> json) {
     return Bike(
       id: json['id'] as int,
-      idBrand: json['idBrand'],
-      idBikeType: json['idBikeType'],
-      idWarehouse: json['idWarehouse'],
-      idBrakesType: json['idBrakesType'],
+      idBrand: Brand.toFromMap(json),
+      idBikeType: BikeType.toFromMap(json),
+      idWarehouse: Warehouse.toFromMap(json),
+      idBrakesType: BrakesType.toFromMap(json),
       cost: json['cost'] as int,
       diameter: json['diameter'] as int,
       year: json['year'] as int,

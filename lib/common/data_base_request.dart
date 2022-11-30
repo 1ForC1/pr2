@@ -1,4 +1,11 @@
 abstract class DataBaseRequest {
+    /// Запрос на вывод данных без критериев
+  static String select(String table) => 'Select * from $table';
+
+  static String selectName(String table, List<String> test) =>
+      'Select ${test.toString().replaceAll('[', '').replaceAll(']', '')} from $table';
+
+  /// Запрос на удаление таблиц
   static String deleteTable(String table) => 'DROP TABLE $table';
 
   static const String tableRole = 'role';

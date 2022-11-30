@@ -1,5 +1,6 @@
 import 'package:pr2/domain/entity/user_entity.dart';
 
+import '../../core/crypto/crypto.dart';
 import '../../domain/entity/role_entity.dart';
 
 class User extends UserEntity {
@@ -11,7 +12,7 @@ class User extends UserEntity {
       required this.password});
 
   Map<String, dynamic> toMap() {
-    return {'login': login, 'password': password, 'id_role': idRole.id};
+    return {'login': login, 'password': Crypto.crypto(password), 'id_role': idRole.id};
   }
 
   factory User.toFromMap(Map<String, dynamic> json) {
